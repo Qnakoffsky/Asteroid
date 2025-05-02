@@ -5,6 +5,7 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS
 from circleshape import CircleShape
 updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
+asteroids = pygame.sprite.Group()
 
 def main():
    pygame.init()
