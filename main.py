@@ -5,10 +5,18 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS
 from circleshape import CircleShape
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
-from groups import updatable, drawable, asteroids
+from groups import updatable, drawable, asteroids, shots
 
 Asteroid.containers = (asteroids, updatable, drawable)
 AsteroidField.containers = updatable
+
+class Shot(CircleShape, pygame.sprite.Sprite):
+    def __init__(self, position):
+        SHOT_RADIUS = 5
+        velocity = pygame.Vector2(0, 0)
+        super().__init__(position, SHOT_RADIUS, velocity)
+        self.velocity = velocity
+        pygame.sprite.Sprite.__init__(self)
 
 def main():
     pygame.init()
@@ -46,6 +54,7 @@ def main():
         # Update display and timing
         pygame.display.flip()
         dt = clock.tick(60) / 1000
+    
 
 if __name__ == "__main__":
     main()
