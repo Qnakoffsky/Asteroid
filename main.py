@@ -1,6 +1,6 @@
 import pygame
 from constants import *
-from player import Player
+from player import Player, Shot
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS
 from circleshape import CircleShape
 from asteroid import Asteroid
@@ -10,17 +10,10 @@ from groups import updatable, drawable, asteroids, shots
 Asteroid.containers = (asteroids, updatable, drawable)
 AsteroidField.containers = updatable
 
-class Shot(CircleShape, pygame.sprite.Sprite):
-    def __init__(self, position):
-        SHOT_RADIUS = 5
-        velocity = pygame.Vector2(0, 0)
-        super().__init__(position, SHOT_RADIUS, velocity)
-        self.velocity = velocity
-        pygame.sprite.Sprite.__init__(self)
-
 def main():
     pygame.init()
     Player.containers = (updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     clock = pygame.time.Clock()
@@ -45,8 +38,12 @@ def main():
                 print("Game over!")
                 import sys
                 sys.exit()
-        
-        # Fill screen and draw objects
+       
+        shots.update(dt)
+        for shot in shots:
+            shot.draw(screen)
+       
+ # Fill screen and draw objects
         screen.fill("black")
         for object in drawable:
             object.draw(screen)
