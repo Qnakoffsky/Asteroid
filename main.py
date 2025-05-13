@@ -39,12 +39,9 @@ def main():
                 import sys
                 sys.exit()
        
-        shots.update(dt)
-        for shot in shots:
-            shot.draw(screen)
-       
  # Fill screen and draw objects
         screen.fill("black")
+
         for object in drawable:
             object.draw(screen)
             
