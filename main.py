@@ -42,7 +42,7 @@ def main():
                 for bullet in shots:
                     if bullet.collision_event(asteroid):
             # They collided! Destroy both
-                        asteroid.kill()
+                        asteroid.split()
                         bullet.kill()
 
  # Fill screen and draw objects
