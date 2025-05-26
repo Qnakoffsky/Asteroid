@@ -60,8 +60,6 @@ class Player(CircleShape):
         shots.add(shot)
         self.bullet_timer = PLAYER_SHOOT_COOLDOWN
 
-        return shot
-
 class Shot(CircleShape, pygame.sprite.Sprite):
     def __init__(self, position, velocity):
         SHOT_RADIUS = 5
